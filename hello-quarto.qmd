@@ -1,0 +1,100 @@
+---
+title: "Untitled"
+format: 
+  html:
+    code-fold: true
+    toc: true
+embed-resources: true
+params: 
+  state: "Virginia"
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+## Packages
+
+```{r}
+library(tidyverse)
+```
+
+## YAML Header
+
+-   state: "Virginia" = key value pair. Can use in-line or in code chunks
+
+I used to live in `r params$state`.
+
+```{r}
+toupper(params$state)
+```
+
+## In-line code to refer to a result
+
+```{r}
+
+model <- lm(dist ~ speed, data = cars)
+
+```
+
+Coefficient of lm model is equal to `r coef(model)[["speed"]]`.
+
+## Here
+
+library(here) can be used to organize sub-directories.
+
+## Math Mode
+
+In-line:
+
+...binomally distributed random variable, $X \sim binom(n, p)$.
+
+Chunk:
+
+$$
+P(X = x) = {n \choose x} p ^ x (1-p) ^ {n-x}
+$$ {#eq-binomial}
+
+Chunk will center equation and automatically add equation numbers.
+
+Can use for Greek alphabet:
+
+Change is often symbolized as $\Delta$.
+
+You can create page breaks as follows, but only works in PDF:
+\newpage
+
+Equation for RMSE:
+
+$$
+RMSE = \sqrt{\frac{1}{n} \sum_{i = 1}^n (y- \hat{y})^2}
+$$ {#eq-rmse}
+
+## Cross-references {#sec-crossref}
+
+![Bark](barks.jpg){#fig-barks fig-align="center" width="20%"}
+
+Requires:
+
+1)  a label associated with the section, figure, table or equation being mentioned (above),
+
+2)  reference to the labelled item (below)
+
+See @sec-crossref for more info.
+
+See @eq-rmse for the formula.
+
+See @fig-barks for an important image.
+
+## Citations
+
+Add source to Zotero using DOI.
+
+Go to visual editor and click "insert citation".
+
+End-of-sentence citations look like this. [@wickham2014]
+
+@wickham2014 is an in-sentence format.
+
+Citation style can be changed in the YAML header - see quarto.org.
+
+Need visual editor to find the way the citation is tagged
